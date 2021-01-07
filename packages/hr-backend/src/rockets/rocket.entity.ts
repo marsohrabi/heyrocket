@@ -2,27 +2,14 @@ import {
     Column,
     DataType,
     Model,
-    Table
+    Table,
 } from "sequelize-typescript";
 
 @Table({
-    timestamps: true,
     tableName: "rockets",
-    underscored: true,
-    indexes: [
-        { unique: true, fields: ["id"] },
-        {
-            name: "filter",
-            fields: ["fk_dealership_id"],
-            unique: false,
-        },
-    ],
     paranoid: true,
-    createdAt: "created_at",
-    updatedAt: "updated_at",
-    deletedAt: "deleted_at",
+    underscored: true
 })
-
 export class RocketEntity extends Model<RocketEntity> {
     @Column({
         type: DataType.INTEGER,
@@ -32,6 +19,11 @@ export class RocketEntity extends Model<RocketEntity> {
     })
     readonly id: number;
 
-    @Column({ type: DataType.STRING, allowNull: false, field: "stock_number" })
-    readonly stockNumber: string;
+    @Column({ type: DataType.STRING(100) })
+    name: string;
+
+    @Column({ type: DataType.INTEGER })
+    price: number;
+
+
 }

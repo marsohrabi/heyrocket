@@ -1,6 +1,6 @@
 import { Module } from "@nestjs/common";
 import { GraphQLModule } from "@nestjs/graphql";
-import { CatsModule } from "./cats/cats.module";
+import { RocketsModule } from "./rockets/rockets.module";
 import { DatabaseModule } from './database/database.module';
 import { MemcachedCache } from 'apollo-server-cache-memcached'
 
@@ -39,7 +39,7 @@ const extensions = [() => new ApolloLogExtension()];
             },
         }),
         DatabaseModule,
-        CatsModule,
+        RocketsModule,
     ],
 })
 export class AppModule { }

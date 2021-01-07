@@ -1,5 +1,5 @@
 import { Sequelize } from 'sequelize-typescript';
-import { CatEntity } from '../cats/cat.entity';
+import { RocketEntity } from '../rockets/rocket.entity';
 
 export const databaseProviders = [
     {
@@ -23,7 +23,7 @@ export const databaseProviders = [
                 logging: false,
                 ssl: true,
             });
-            sequelize.addModels([CatEntity]);
+            sequelize.addModels([RocketEntity]);
             await sequelize.sync();
             return sequelize;
         },

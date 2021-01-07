@@ -1,4 +1,0 @@
-type Rocket {
-    id: Int!
-    stockNumber: String!
-}
