@@ -4,6 +4,8 @@ import { applyMiddleware, compose, createStore } from "redux";
 import { createLogger } from "redux-logger";
 import createSagaMiddleware from "redux-saga";
 
+import createRootReducer from "../reducers";
+
 const logger = createLogger({
     predicate: () => process.env.NODE_ENV !== "production",
 });
