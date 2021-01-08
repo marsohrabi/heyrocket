@@ -1,15 +1,15 @@
 import React from 'react';
-import logo from './logo.svg';
 import { AppBar, Tab, Toolbar, Typography } from '@material-ui/core';
 import { makeStyles } from '@material-ui/styles';
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
+
+const logo = process.env.PUBLIC_URL + "/logo.svg";
 
 const useStyles = makeStyles((theme) => ({
     root: {
         flexGrow: 1,
     },
     title: {
-        //flexGrow: 1,
         paddingLeft: 15,
         paddingTop: 10,
     },
@@ -41,16 +41,16 @@ const Header: React.FC = () => {
     };
 
     return (
-        <div className="classes.root">
+        <div className={classes.root}>
             <AppBar position="static">
                 <Toolbar>
-                    <img src={logo} width={"30px"} 
-                        alt="HeyRocket logo" 
-                        onClick={() => handleNavClick("home")}/>
-                    <Typography variant="h3" 
+                    <img src={logo} width={"30px"}
+                        alt="HeyRocket logo"
+                        onClick={() => handleNavClick("home")} />
+                    <Typography variant="h3"
                         className={classes.title}
                         onClick={() => handleNavClick("home")}>
-                            HeyRocket</Typography>
+                        HeyRocket</Typography>
                     <Tab
                         label="Search"
                         onClick={() => handleNavClick("search")}
@@ -61,7 +61,7 @@ const Header: React.FC = () => {
                     />
                     <Tab
                         label={<ShoppingCartIcon
-                            fontSize="large"/>}
+                            fontSize="large" />}
                         onClick={() => handleNavClick("cart")}
                     />
                 </Toolbar>

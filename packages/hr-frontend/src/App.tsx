@@ -3,6 +3,7 @@ import './App.css';
 import { Grid } from '@material-ui/core';
 import Header from './Header';
 import Content from './Content';
+import Landing from './Landing';
 
 const App: React.FC = () => {
   return (
@@ -11,7 +12,7 @@ const App: React.FC = () => {
         <Header />
       </Grid>
       <Grid container item justify="center" >
-        This is where introductory text will go.
+        <Landing />
       </Grid>
       <Grid item container>
         <Grid item xs={false} sm={2} />
