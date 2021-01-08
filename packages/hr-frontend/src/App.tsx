@@ -1,18 +1,28 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import { Grid } from '@material-ui/core';
+import Header from './Header';
+import Content from './Content';
 
-function App() {
+const App: React.FC = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          The HeyRocket website is under development.
-        </p>
-        
-      </header>
-    </div>
+    <Grid container direction="column" spacing={3}>
+      <Grid item>
+        <Header />
+      </Grid>
+      <Grid container item justify="center" >
+        This is where introductory text will go.
+      </Grid>
+      <Grid item container>
+        <Grid item xs={false} sm={2} />
+        <Grid item xs={12} sm={8}>
+          <Content />
+        </Grid>
+        <Grid item xs={false} sm={2} />
+      </Grid>
+
+    </Grid>
+
   );
 }
 
