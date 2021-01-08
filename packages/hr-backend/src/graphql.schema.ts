@@ -7,9 +7,9 @@
 /* tslint:disable */
 /* eslint-disable */
 export class InputRocket {
-    id: number;
-    name: string;
-    price: number;
+    id?: number;
+    name?: string;
+    price?: number;
 }
 
 export class PageParams {
@@ -22,13 +22,13 @@ export abstract class IQuery {
 
     abstract pages(params?: PageParams): RocketConnection | Promise<RocketConnection>;
 
-    abstract Rocket(id: string): Rocket | Promise<Rocket>;
+    abstract rocket(id: string): Rocket | Promise<Rocket>;
 }
 
 export class Rocket {
-    id: number;
-    name: string;
-    price: number;
+    id?: number;
+    name?: string;
+    price?: number;
 }
 
 export class RocketConnection {

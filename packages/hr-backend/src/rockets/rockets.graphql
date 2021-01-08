@@ -1,19 +1,19 @@
 type Query {
     getRockets: [Rocket]
     pages(params: PageParams): RocketConnection!
-    Rocket(id: ID!): Rocket
+    rocket(id: ID!): Rocket
 }
 
 type Rocket {
-    id: Int!
-    name: String!
-    price: Int!
+    id: Int
+    name: String
+    price: Int
 }
 
 input InputRocket {
-    id: Int! 
-    name: String!
-    price: Int!
+    id: Int
+    name: String
+    price: Int
 }
 
 type RocketConnection {

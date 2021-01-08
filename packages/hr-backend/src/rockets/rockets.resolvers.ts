@@ -13,8 +13,20 @@ export class RocketsResolvers {
     constructor(private readonly rocketsService: RocketsService) {}
 
     @Query()
+    @UseGuards(RocketsGuard)
     async getRockets(): Promise<Rocket[]> {
         return this.rocketsService.findAll();
+    }
+
+    @UseInterceptors(TransformHeadersInterceptor)
+    @Query()
+    @UseGuards(RocketsGuard)
+    async pages(@Args("params") params: PageParams): Promise<RocketConnection> {
+        console.time('page');
+        const toReturn = await this.rocketsService.pages(params);
+        console.timeEnd('page');
+
+        return toReturn
     }
 
     @Query("rocket")
