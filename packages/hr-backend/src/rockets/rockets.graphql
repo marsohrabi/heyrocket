@@ -6,14 +6,10 @@ type Query {
 
 type Rocket {
     id: Int
-    name: String
+    model: String
     price: Int
-}
-
-input InputRocket {
-    id: Int
-    name: String
-    price: Int
+    description: String
+    image_url: String
 }
 
 type RocketConnection {
@@ -24,8 +20,4 @@ type RocketConnection {
 input PageParams {
     limit: Int!
     offset: Int!
-}
-
-type Mutation {
-    createRocket(inputRocket: InputRocket): Rocket
 }

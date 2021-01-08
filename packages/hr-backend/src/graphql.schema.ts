@@ -6,12 +6,6 @@
 
 /* tslint:disable */
 /* eslint-disable */
-export class InputRocket {
-    id?: number;
-    name?: string;
-    price?: number;
-}
-
 export class PageParams {
     limit: number;
     offset: number;
@@ -27,15 +21,13 @@ export abstract class IQuery {
 
 export class Rocket {
     id?: number;
-    name?: string;
+    model?: string;
     price?: number;
+    description?: string;
+    image_url?: string;
 }
 
 export class RocketConnection {
     totalCount: number;
     rockets?: Rocket[];
-}
-
-export abstract class IMutation {
-    abstract createRocket(inputRocket?: InputRocket): Rocket | Promise<Rocket>;
 }

@@ -20,10 +20,16 @@ export class RocketEntity extends Model<RocketEntity> {
     readonly id: number;
 
     @Column({ type: DataType.STRING(100) })
-    name: string;
+    model: string;
 
     @Column({ type: DataType.INTEGER })
     price: number;
+
+    @Column({type: DataType.STRING})
+    description: string;
+
+    @Column({type: DataType.STRING})
+    image_url: string;
 
 
 }
