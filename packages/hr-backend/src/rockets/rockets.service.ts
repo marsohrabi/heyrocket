@@ -9,7 +9,7 @@ export class RocketsService {
         @Inject("ROCKET_REPOSITORY") private readonly rocketsRepository: typeof RocketEntity,
     ) {}
 
-    private readonly rockets: Rocket[] = [{ id: 1, name: "Zoomer", price: 500000 }];
+    private readonly rockets: Rocket[] = [];
 
     create(rocket: Rocket): Rocket {
         rocket.id = this.rockets.length + 1;
@@ -23,9 +23,10 @@ export class RocketsService {
         });
         const gqlRockets: Rocket[] = allRockets.map((c) => {
             return {
-                name: c.name,
+                model: c.model,
                 id: c.id,
                 price: c.price,
+                description: c.description
             };
         });
         return gqlRockets;
@@ -42,9 +43,10 @@ export class RocketsService {
 
         const gqlRockets: Rocket[] = page.rows.map((c) => {
             return {
-                name: c.name,
+                model: c.model,
                 id: c.id,
                 price: c.price,
+                description: c.description
             };
         });
 

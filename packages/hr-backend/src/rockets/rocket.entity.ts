@@ -25,7 +25,7 @@ export class RocketEntity extends Model<RocketEntity> {
     @Column({ type: DataType.INTEGER })
     price: number;
 
-    @Column({type: DataType.STRING})
+    @Column({type: DataType.STRING(1000)})
     description: string;
 
     @Column({type: DataType.STRING})

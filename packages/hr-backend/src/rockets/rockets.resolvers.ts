@@ -36,12 +36,4 @@ export class RocketsResolvers {
     ): Promise<Rocket> {
         return this.rocketsService.findOneById(id)
     }
-
-    @Mutation("createRocket")
-    async create(@Args("createRocketInput") args: Rocket): Promise<Rocket> {
-        const createdRocket = await this.rocketsService.create(args);
-        pubSub.publish("rocketCreated", { rocketCreated: createdRocket });
-        return createdRocket;
-    }
-
 }
