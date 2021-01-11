@@ -1,9 +1,13 @@
 import React from 'react';
+import {useDispatch} from 'react-redux';
+import {actions as navigationActions} from './navigation/redux/model';
 import { AppBar, Tab, Toolbar, Typography } from '@material-ui/core';
 import { makeStyles } from '@material-ui/styles';
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 
 const logo = process.env.PUBLIC_URL + "/logo.svg";
+
+
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -21,6 +25,12 @@ const useStyles = makeStyles((theme) => ({
 
 const Header: React.FC = () => {
     const classes = useStyles();
+    const dispatch = useDispatch();
+
+    const toSearch = () => {
+        dispatch(navigationActions.toSearch());
+    };
+
     type navType = "search" | "home" | "about" | "cart";
 
     const handleNavClick = (selectedNav: navType) => {
@@ -49,11 +59,12 @@ const Header: React.FC = () => {
                         onClick={() => handleNavClick("home")} />
                     <Typography variant="h3"
                         className={classes.title}
-                        onClick={() => handleNavClick("home")}>
+                        onClick={() => handleNavClick("home")}
+                        >
                         HeyRocket</Typography>
                     <Tab
                         label="Search"
-                        onClick={() => handleNavClick("search")}
+                        onClick={toSearch}
                     />
                     <Tab
                         label="About"

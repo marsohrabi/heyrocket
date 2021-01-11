@@ -1,28 +1,44 @@
-import React from 'react';
-import './App.css';
-import { Grid } from '@material-ui/core';
-import Header from './Header';
-import Content from './Content';
-import Landing from './Landing';
+import React, { Suspense } from 'react';
+import { useDispatch } from 'react-redux';
+import { Route, RouteComponentProps, Switch } from 'react-router';
+import { compose } from 'redux';
+
+const LandingPage = React.lazy(() => import("./pages/LangingPage"));
 
 const App: React.FC = () => {
   return (
-    <Grid container direction="column" spacing={3}>
-      <Grid item>
-        <Header />
-      </Grid>
-      <Grid container item justify="center" >
-        <Landing />
-      </Grid>
-      <Grid item container>
-        <Grid item xs={false} sm={2} />
-        <Grid item xs={12} sm={8}>
-          <Content />
-        </Grid>
-        <Grid item xs={false} sm={2} />
-      </Grid>
-
-    </Grid>
+    <React.Fragment>
+      <Suspense fallback={<div style={{ height: "100vh" }} />}>
+        <Switch>
+          <Route
+            exact
+            path="/"
+            render={() => {
+              return <LandingPage />;
+            }}
+          />
+          <Route
+            exact
+            path="/rockets"
+            render={() => {
+              return "Rockets page";
+            }}
+          />
+          <Route
+            path="/rockets/:id"
+            render={() => {
+              return "Rocket detail page";
+            }}
+          />
+          <Route
+            path="/cart"
+            render={() => {
+              return "Shopping cart";
+            }}
+          />
+        </Switch>
+      </Suspense>
+    </React.Fragment>
 
   );
 }
