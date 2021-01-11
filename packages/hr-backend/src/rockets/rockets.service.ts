@@ -7,7 +7,7 @@ import { Rocket, PageParams, RocketConnection } from "../graphql.schema";
 export class RocketsService {
     constructor(
         @Inject("ROCKET_REPOSITORY") private readonly rocketsRepository: typeof RocketEntity,
-    ) {}
+    ) { }
 
     private readonly rockets: Rocket[] = [];
 
@@ -18,18 +18,38 @@ export class RocketsService {
     }
 
     async findAll(): Promise<Rocket[]> {
-        const allRockets = await this.rocketsRepository.findAll({
-            limit: 20
-        });
-        const gqlRockets: Rocket[] = allRockets.map((c) => {
-            return {
-                model: c.model,
-                id: c.id,
-                price: c.price,
-                description: c.description
-            };
-        });
-        return gqlRockets;
+
+
+
+        // const allRockets = await this.rocketsRepository.findAll({
+        //     limit: 20
+        // });
+        // const gqlRockets: Rocket[] = allRockets.map((c) => {
+        //     return {
+        //         model: c.model,
+        //         id: c.id,
+        //         price: c.price,
+        //         description: c.description
+        //     };
+        // });
+        // return gqlRockets;
+
+
+        //TEMP
+
+
+        const gqlRockets: Rocket[] = [
+            {
+                model: "sample model",
+                id: 1,
+                price: 1000,
+                description: "sample description"
+            }
+        ]
+
+        return gqlRockets
+
+
     }
 
     async pages(params: PageParams): Promise<RocketConnection> {

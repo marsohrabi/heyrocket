@@ -5,7 +5,8 @@ import { createLogger } from "redux-logger";
 import createSagaMiddleware from "redux-saga";
 
 import createRootReducer from "../reducers";
-import navigationRootSaga from '../../../navigation/redux/sagas'
+import navigationRootSaga from '../../../navigation/redux/sagas';
+import rocketsRootSaga from "../../../rockets/redux/saga";
 
 const logger = createLogger({
     predicate: () => process.env.NODE_ENV !== "production",
@@ -21,5 +22,6 @@ const store = createStore(
 )
 
 sagaMiddleware.run(navigationRootSaga);
+sagaMiddleware.run(rocketsRootSaga);
 
 export default store;
