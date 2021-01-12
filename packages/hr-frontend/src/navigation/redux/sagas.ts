@@ -11,8 +11,17 @@ function* watchToSearch() {
     yield takeLatest("TO_SEARCH_ROCKETS", toSearch);
 }
 
+function* toCart() {
+    yield put(push({ pathname: Routes.cart}));
+}
+
+function* watchToCart() {
+    yield takeLatest("TO_CART", toCart);
+}
+
 export default function* rootSaga() {
     yield all([
         watchToSearch(),
+        watchToCart(),
     ]);
 }
