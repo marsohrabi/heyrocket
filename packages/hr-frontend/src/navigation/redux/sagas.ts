@@ -8,7 +8,7 @@ function* toSearch() {
 }
 
 function* watchToSearch() {
-    yield takeLatest("TO_SEARCH", toSearch);
+    yield takeLatest("TO_SEARCH_ROCKETS", toSearch);
 }
 
 export default function* rootSaga() {

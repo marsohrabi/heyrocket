@@ -1,31 +1,23 @@
-import React, { Suspense } from 'react';
-import { useDispatch } from 'react-redux';
-import { Route, RouteComponentProps, Switch } from 'react-router';
-import { compose } from 'redux';
+import React, { Suspense } from "react";
+import { Route, Switch } from "react-router";
+import { useRockets } from "./rockets/redux/hooks";
 
 const LandingPage = React.lazy(() => import("./pages/LangingPage"));
 
+enum Routes {
+  rocketDetail = "/rockets/:id",
+  cart = "/cart",
+}
+
 const App: React.FC = () => {
+  useRockets();
+
   return (
     <React.Fragment>
       <Suspense fallback={<div style={{ height: "100vh" }} />}>
         <Switch>
           <Route
-            exact
-            path="/"
-            render={() => {
-              return <LandingPage />;
-            }}
-          />
-          <Route
-            exact
-            path="/rockets"
-            render={() => {
-              return "Rockets page";
-            }}
-          />
-          <Route
-            path="/rockets/:id"
+            path={Routes.rocketDetail}
             render={() => {
               return "Rocket detail page";
             }}
@@ -36,11 +28,24 @@ const App: React.FC = () => {
               return "Shopping cart";
             }}
           />
+          <Route
+            exact
+            path="/rockets"
+            render={() => {
+              return "Rockets page";
+            }}
+          />
+          <Route
+            exact
+            path="/"
+            render={() => {
+              return <LandingPage />;
+            }}
+          />
         </Switch>
       </Suspense>
     </React.Fragment>
-
   );
-}
+};
 
 export default App;
