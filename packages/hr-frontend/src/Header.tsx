@@ -48,6 +48,7 @@ const Header: React.FC = () => {
 
     type navType = "home" | "search" | "about" | "cart";
 
+
     const handleNavClick = (selectedNav: navType) => {
         switch (selectedNav) {
             case "home":
@@ -91,7 +92,7 @@ const Header: React.FC = () => {
                     <Tab
                         label={<ShoppingCartIcon
                             fontSize="large" />}
-                        onClick={() => handleNavClick("cart")}
+                        onClick={toCart}
                     />
                 </Toolbar>
 
