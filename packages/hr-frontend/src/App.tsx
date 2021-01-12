@@ -1,16 +1,19 @@
 import React, { Suspense } from "react";
 import { Route, Switch } from "react-router";
-import { useRockets } from "./rockets/redux/hooks";
+import RocketSearchPage from "./pages/RocketSearchPage";
+//import { useRockets } from "./rockets/redux/hooks";
 
 const LandingPage = React.lazy(() => import("./pages/LangingPage"));
 
 enum Routes {
+  about = "/about",
+  rockets = "/rockets",
   rocketDetail = "/rockets/:id",
   cart = "/cart",
 }
 
 const App: React.FC = () => {
-  useRockets();
+  //useRockets();
 
   return (
     <React.Fragment>
@@ -23,16 +26,17 @@ const App: React.FC = () => {
             }}
           />
           <Route
-            path="/cart"
+            path={Routes.cart}
             render={() => {
               return "Shopping cart";
             }}
           />
           <Route
             exact
-            path="/rockets"
+            path={Routes.rockets}
             render={() => {
-              return "Rockets page";
+              return <RocketSearchPage />;
+              //return "Rockets page";
             }}
           />
           <Route
