@@ -1,23 +1,26 @@
-import { List, ListItem, Theme, makeStyles, createStyles, ListItemAvatar, Typography } from "@material-ui/core";
-import React, { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { ListItem, Grid } from "@material-ui/core";
+import React from "react";
+import { Rocket } from "../rockets/redux/model";
 
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    root: {
-      width: '100%',
-      height: 400,
-      maxWidth: 300,
-      backgroundColor: theme.palette.background.paper,
-    },
-  }),
-);
+interface IRocket{
+    readonly rocket: Rocket
+}
 
-export const ShoppingCartRow: React.FC = () => {
-    const classes = useStyles();
-    const dispatch = useDispatch();
+export const ShoppingCartRow: React.FC<IRocket> = ({rocket}) => {
 
     return (
-        <Typography> Hello World </Typography>
+        <ListItem>
+            <Grid container>
+                <Grid item xs={2}>
+                    <img src={rocket.image_url} alt='temp' width='100%' height='100%' />
+                </Grid>
+                <Grid xs={8}>
+                    {rocket.model}
+                </Grid>
+                <Grid xs={2}>
+                    $1,000,000
+                </Grid>
+            </Grid>
+        </ListItem>
     )
 }

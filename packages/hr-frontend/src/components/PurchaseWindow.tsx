@@ -1,23 +1,28 @@
-import { List, ListItem, Theme, makeStyles, createStyles, ListItemAvatar, Typography } from "@material-ui/core";
-import React, { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { Theme, makeStyles, createStyles, Typography } from "@material-ui/core";
+import React from "react";
+import { PurchaseModal } from "./PurchaseModal";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
-    root: {
+    text: {
       width: '100%',
-      height: 400,
-      maxWidth: 300,
-      backgroundColor: theme.palette.background.paper,
+      backgroundColor: '#fffaed',
+      padding: '16px',
+      textAlign: 'center',
+      border: '1px solid #000',
     },
   }),
 );
 
-export const ShoppingCartRow: React.FC = () => {
+export const PurchaseWindow: React.FC = () => {
     const classes = useStyles();
-    const dispatch = useDispatch();
+
+    const total = '1,000,000'
 
     return (
-        <Typography> Hello World </Typography>
+        <div className={classes.text}> 
+        <Typography> Total: ${total} </Typography>
+        <PurchaseModal />
+        </div>
     )
 }

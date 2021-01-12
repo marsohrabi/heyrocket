@@ -1,18 +1,20 @@
 import React from 'react';
-import { makeStyles } from '@material-ui/styles';
 import { Grid } from '@material-ui/core';
 import Header from '../Header';
-import Landing from '../Landing';
 import { ShoppingCart } from '../components/ShoppingCart'
+import { PurchaseWindow } from '../components/PurchaseWindow'
 
 const ShoppingCartPage: React.FC = () => {
     return (
-        <Grid container direction="column" spacing={3}>
-            <Grid item>
+        <Grid container spacing={3}>
+            <Grid item xs={12}>
                 <Header />
             </Grid>
-            <Grid container item direction="row" xs={12}>
+            <Grid item xs={8}>
                 <ShoppingCart />
+            </Grid>
+            <Grid item xs={3}>
+                <PurchaseWindow />
             </Grid>
         </Grid>
     );
