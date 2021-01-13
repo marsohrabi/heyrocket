@@ -3,18 +3,26 @@ import { Grid } from '@material-ui/core';
 import Header from '../Header';
 import { ShoppingCart } from '../components/ShoppingCart'
 import { PurchaseWindow } from '../components/PurchaseWindow'
+import { Rocket } from '../rockets/redux/model'
 
-const ShoppingCartPage: React.FC = () => {
+export interface IShoppingCart {
+    shoppingCart: ReadonlyArray<Rocket>;
+}
+
+export const ShoppingCartPage: React.FC<IShoppingCart> = ({shoppingCart}: IShoppingCart) => {
+
+    const total = shoppingCart.reduce((a, b) => a + b.price!, 0);
+
     return (
         <Grid container spacing={3}>
             <Grid item xs={12}>
                 <Header />
             </Grid>
             <Grid item xs={8}>
-                <ShoppingCart />
+                <ShoppingCart shoppingCart={shoppingCart}/>
             </Grid>
             <Grid item xs={3}>
-                <PurchaseWindow />
+                <PurchaseWindow total={total}/>
             </Grid>
         </Grid>
     );

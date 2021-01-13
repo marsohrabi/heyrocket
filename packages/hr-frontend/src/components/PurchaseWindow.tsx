@@ -14,10 +14,12 @@ const useStyles = makeStyles((theme: Theme) =>
   }),
 );
 
-export const PurchaseWindow: React.FC = () => {
-    const classes = useStyles();
+export interface ITotal {
+  total: React.ReactNode;
+}
 
-    const total = '1,000,000'
+export const PurchaseWindow: React.FC<ITotal> = ({total}) => {
+    const classes = useStyles();
 
     return (
         <div className={classes.text}> 

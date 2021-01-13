@@ -18,7 +18,7 @@ export const ShoppingCartRow: React.FC<IRocket> = ({rocket}) => {
                     {rocket.model}
                 </Grid>
                 <Grid xs={2}>
-                    $1,000,000
+                    ${rocket.price}
                 </Grid>
             </Grid>
         </ListItem>

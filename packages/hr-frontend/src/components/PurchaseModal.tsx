@@ -1,6 +1,7 @@
 import { Theme, makeStyles, createStyles, Modal, Button } from "@material-ui/core";
 import React from "react";
 import { actions as modalActions } from "../modal/redux/model";
+import { actions as shoppingCartActions } from "../shopping-cart/redux/model"
 import { useDispatch } from "react-redux";
 import { useModal } from "../modal/redux/hooks";
 
@@ -26,6 +27,8 @@ export const PurchaseModal: React.FC = () => {
     const classes = useStyles();
 
     const handleOpen = () => {
+        // dispatch(shoppingCartActions.addTransaction());
+        dispatch(shoppingCartActions.emptyCart)();
         dispatch(modalActions.openModal());
     }
 

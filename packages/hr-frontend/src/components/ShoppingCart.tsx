@@ -1,24 +1,37 @@
-import { List } from "@material-ui/core";
+import { List, Grid, ListItem, createStyles, makeStyles, Theme } from "@material-ui/core";
 import React from "react";
 import { ShoppingCartRow } from "./ShoppingCartRow"
+import { IShoppingCart } from "../pages/ShoppingCartPage"
 
-const current_shopping_cart = [
-    {
-    image_url: 'https://images.unsplash.com/photo-1551963831-b3b1ca40c98e',
-    model: 'Cool Rocket 1',
-}, {
-    image_url: 'https://images.unsplash.com/photo-1551782450-a2132b4ba21d',
-    model: 'Cool Rocket 3',
-}
-]
+const useStyles = makeStyles((theme: Theme) =>
+  createStyles({
+    text: {
+      fontWeight: 600,
+      fontSize: 24
+    },
+  }),
+);
 
-export const ShoppingCart: React.FC = () => {
+export const ShoppingCart: React.FC<IShoppingCart> = ({shoppingCart}) => {
+    const classes = useStyles();
 
     return (
-        <List>
-            {current_shopping_cart.map((item) => (
-                <ShoppingCartRow rocket={item} />
-            ))}    
-        </List>
+        <Grid>
+            <List>
+                <ListItem>
+                    <Grid container>
+                        <Grid item xs={10} className={classes.text}>
+                            Shopping List
+                        </Grid>
+                        <Grid xs={2}>
+                            Price
+                        </Grid>
+                    </Grid>
+                </ListItem>
+                {shoppingCart.map((rocket) => (
+                    <ShoppingCartRow rocket={rocket} />
+                ))}
+            </List>
+        </Grid>
     )
 }
