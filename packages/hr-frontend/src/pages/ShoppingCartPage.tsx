@@ -1,8 +1,8 @@
 import React from 'react';
 import { Grid } from '@material-ui/core';
 import Header from '../Header';
-import { ShoppingCart } from '../components/ShoppingCart'
-import { PurchaseWindow } from '../components/PurchaseWindow'
+import { ShoppingCart } from '../shopping-cart/ShoppingCart'
+import { PurchaseWindow } from '../shopping-cart/PurchaseWindow'
 import { Rocket } from '../rockets/redux/model'
 
 export interface IShoppingCart {
