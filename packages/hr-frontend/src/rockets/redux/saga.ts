@@ -22,6 +22,7 @@ const fetchRocketsQuery = gql`
             model
             price
             description
+            image_url
         }
     }
 `

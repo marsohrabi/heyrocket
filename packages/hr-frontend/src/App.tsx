@@ -3,7 +3,6 @@ import { Route, Switch } from "react-router";
 import RocketSearchPage from "./pages/RocketSearchPage";
 //import { useRockets } from "./rockets/redux/hooks";
 import ShoppingCartPage from "./pages/ShoppingCartPage";
-import { useRockets } from "./rockets/redux/hooks";
 
 const LandingPage = React.lazy(() => import("./pages/LangingPage"));
 
@@ -15,7 +14,6 @@ enum Routes {
 }
 
 const App: React.FC = () => {
-  //useRockets();
 
   return (
     <React.Fragment>

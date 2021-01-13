@@ -1,6 +1,6 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
-import { actions as navigationActions, Routes } from './navigation/redux/model';
+import { actions as navigationActions } from './navigation/redux/model';
 import { AppBar, Tab, Toolbar, Typography } from '@material-ui/core';
 import { makeStyles } from '@material-ui/styles';
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';

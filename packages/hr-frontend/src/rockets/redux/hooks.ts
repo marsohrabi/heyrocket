@@ -15,6 +15,7 @@ export const useRockets = () => {
     }
 
     if (rocketsRemoteData !== "Initialized" && rocketsRemoteData !== "Failure" && rocketsRemoteData !== "Pending") {
+        console.log("Returning rocket data");
         return rocketsRemoteData
     }
 
