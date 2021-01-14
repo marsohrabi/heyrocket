@@ -1,18 +1,28 @@
 import React from 'react';
-import { makeStyles } from '@material-ui/styles';
 import { Grid } from '@material-ui/core';
 import Header from '../Header';
-import Landing from '../Landing';
-import { ShoppingCart } from '../components/ShoppingCart'
+import { ShoppingCart } from '../shopping-cart/ShoppingCart'
+import { PurchaseWindow } from '../shopping-cart/PurchaseWindow'
+import { Rocket } from '../rockets/redux/model'
 
-const ShoppingCartPage: React.FC = () => {
+export interface IShoppingCart {
+    shoppingCart: ReadonlyArray<Rocket>;
+}
+
+export const ShoppingCartPage: React.FC<IShoppingCart> = ({shoppingCart}: IShoppingCart) => {
+
+    const total = shoppingCart.reduce((a, b) => a + b.price!, 0);
+
     return (
-        <Grid container direction="column" spacing={3}>
-            <Grid item>
+        <Grid container spacing={3}>
+            <Grid item xs={12}>
                 <Header />
             </Grid>
-            <Grid container item direction="row" xs={12}>
-                <ShoppingCart />
+            <Grid item xs={8}>
+                <ShoppingCart shoppingCart={shoppingCart}/>
+            </Grid>
+            <Grid item xs={3}>
+                <PurchaseWindow total={total}/>
             </Grid>
         </Grid>
     );

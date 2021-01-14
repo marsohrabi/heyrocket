@@ -3,6 +3,7 @@ import { push } from 'connected-react-router';
 import { all, put, takeLatest } from 'redux-saga/effects';
 
 
+
 function* toHome() {
     yield put(push({ pathname: Routes.home }));
 }
@@ -10,6 +11,7 @@ function* toHome() {
 function* watchToHome() {
     yield takeLatest("TO_HOME", toHome);
 }
+
 
 function* toSearch() {
     yield put(push({ pathname: Routes.search }));
