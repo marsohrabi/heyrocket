@@ -5,7 +5,7 @@ import Landing from '../Landing';
 
 const LandingPage: React.FC = () => {
     return (
-        <Grid container direction="column" spacing={3}>
+        <Grid container direction="column" spacing={3} style={{maxWidth: "100vw"}}>
             <Grid item>
                 <Header />
             </Grid>

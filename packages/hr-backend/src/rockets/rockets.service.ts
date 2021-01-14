@@ -18,10 +18,9 @@ export class RocketsService {
     }
 
     async findAll(): Promise<Rocket[]> {
-
-
-
         const allRockets = await this.rocketsRepository.findAll({
+            order: Sequelize.literal("id ASC"),
+            offset: 0,
             limit: 20
         });
         const gqlRockets: Rocket[] = allRockets.map((c) => {
@@ -29,16 +28,34 @@ export class RocketsService {
                 model: c.model,
                 id: c.id,
                 price: c.price,
-                description: c.description
+                description: c.description,
+                image_url: c.image_url,
+            };
+        });
+        return gqlRockets;
+    }
+
+    async findPage(pageNum: number): Promise<Rocket[]> {
+        const allRockets = await this.rocketsRepository.findAll({
+            order: Sequelize.literal("id ASC"),
+            offset: (pageNum-1) * 20,
+            limit: 20
+        });
+        const gqlRockets: Rocket[] = allRockets.map((c) => {
+            return {
+                model: c.model,
+                id: c.id,
+                price: c.price,
+                description: c.description,
+                image_url: c.image_url,
             };
         });
         return gqlRockets;
     }
 
     async pages(params: PageParams): Promise<RocketConnection> {
-
         const page = await this.rocketsRepository.findAndCountAll({
-            order: Sequelize.literal("id DESC"),
+            order: Sequelize.literal("id ASC"),
             limit: params.limit,
             offset: params.offset,
             logging: false
@@ -49,7 +66,8 @@ export class RocketsService {
                 model: c.model,
                 id: c.id,
                 price: c.price,
-                description: c.description
+                description: c.description,
+                image_url: c.image_url,
             };
         });
 

@@ -21,12 +21,23 @@ export class RocketsResolvers {
     @UseInterceptors(TransformHeadersInterceptor)
     @Query()
     @UseGuards(RocketsGuard)
-    async pages(@Args("params") params: PageParams): Promise<RocketConnection> {
-        console.time('page');
+    async getRocketPages(@Args("params") params: PageParams): Promise<RocketConnection> {
+
+        console.log(params)
+        //console.time('page');
         const toReturn = await this.rocketsService.pages(params);
-        console.timeEnd('page');
+        //console.timeEnd('page');
 
         return toReturn
+    }
+
+    @UseInterceptors(TransformHeadersInterceptor)
+    @Query()
+    @UseGuards(RocketsGuard)
+    async findPage(@Args('pageNum') pageNum: number): Promise<Rocket[]> {
+        const toReturn = await this.rocketsService.findPage(pageNum);
+
+        return toReturn;
     }
 
     @Query("rocket")

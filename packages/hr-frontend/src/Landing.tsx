@@ -23,6 +23,7 @@ const useStyles = makeStyles((theme) => ({
     infoTable: {
         marginBottom: 10,
         padding: "10px 30px",
+        maxWidth: "100%",
     },
 }));
 

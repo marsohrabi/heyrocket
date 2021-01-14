@@ -1,5 +1,5 @@
 
-import { Rocket } from './model';
+import { PageParams, Rocket, RocketConnection } from './model';
 import { all, call, put, takeLatest } from 'redux-saga/effects';
 import { DocumentNode } from "graphql"
 
@@ -22,6 +22,7 @@ const fetchRocketsQuery = gql`
             model
             price
             description
+            image_url
         }
     }
 `
@@ -40,9 +41,50 @@ function* handleFetchRockets() {
     yield takeLatest("FETCH_ROCKETS", fetchRockets);
 }
 
+
+const fetchRocketsPageAsync = createAsyncAction(
+    "FETCH_ROCKETS_PAGE",
+    "RECEIVE_ROCKETS_PAGE",
+    "FETCH_ROCKETS_PAGE_ERROR"
+)<{ params: PageParams }, { getRocketPages: RocketConnection }, any>();
+
+
+const fetchRocketsPageQuery = gql`
+    query getRocketPages($params:PageParams){
+    getRocketPages(params:$params){
+        totalCount
+        rockets{
+            id
+            model
+            price
+            description
+            image_url
+        }
+    }
+}
+`
+
+interface IFetchRocketsPageResult {
+    getRocketPages: RocketConnection
+}
+
+
+function* fetchRocketsPage(action: ReturnType<typeof fetchRocketsPageAsync.request>) {
+    const rockets: IFetchRocketsPageResult = yield call(fetcher, fetchRocketsPageQuery, { params: action.payload.params });
+
+
+    yield put(fetchRocketsPageAsync.success({ getRocketPages: rockets.getRocketPages }))
+}
+
+function* handleFetchRocketsPage() {
+    yield takeLatest("FETCH_ROCKETS_PAGE", fetchRocketsPage);
+}
+
+
 export default function* rootSaga() {
     yield all([
         handleFetchRockets(),
+        handleFetchRocketsPage(),
     ]);
 }
 

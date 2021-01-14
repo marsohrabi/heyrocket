@@ -15,7 +15,7 @@ const extensions = [() => new ApolloLogExtension()];
             installSubscriptionHandlers: true,
             context: ({ req, res }) => ({ req, res }),
             debug: true,
-            playground: false,
+            playground: true,
             typePaths: ["./**/*.graphql"],
             resolverValidationOptions: {
                 requireResolversForResolveType: false,

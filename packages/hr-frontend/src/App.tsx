@@ -1,18 +1,19 @@
 import React, { Suspense } from "react";
 import { Route, Switch } from "react-router";
 import ShoppingCartContainer from "./shopping-cart/containers/ShoppingCartContainer"
-import { useRockets } from "./rockets/redux/hooks";
+import RocketSearchContainer from "./rockets/containers/RocketSearchContainer";
+import withPage from "./withPage";
 
 const LandingPage = React.lazy(() => import("./pages/LangingPage"));
 
 enum Routes {
+  about = "/about",
+  rockets = "/rockets",
   rocketDetail = "/rockets/:id",
   cart = "/cart",
 }
 
 const App: React.FC = () => {
-  useRockets();
-
   return (
     <React.Fragment>
       <Suspense fallback={<div style={{ height: "100vh" }} />}>
@@ -24,16 +25,16 @@ const App: React.FC = () => {
             }}
           />
           <Route
-            path="/cart"
+            path={Routes.cart}
             render={() => {
               return <ShoppingCartContainer/>;
             }}
           />
           <Route
             exact
-            path="/rockets"
+            path={Routes.rockets}
             render={() => {
-              return "Rockets page";
+              return <RocketSearchContainer />;
             }}
           />
           <Route
@@ -49,4 +50,6 @@ const App: React.FC = () => {
   );
 };
 
-export default App;
+const withPageNumber = withPage(1);
+
+export default withPageNumber(App);
