@@ -8,7 +8,7 @@ import {
   CardMedia,
   CardActions,
 } from "@material-ui/core";
-import { RemoteData, Rocket, RocketConnection } from "../rockets/redux/model";
+import { Rocket, RocketConnection } from "../redux/model";
 import ShowMoreText from "react-show-more-text";
 
 const useStyles = makeStyles((theme) => ({
@@ -36,28 +36,28 @@ const useStyles = makeStyles((theme) => ({
 
 interface IRocketGrid {
   rocketsConnection: Required<RocketConnection>;
+  addToCart: Function
 }
 
 interface IRocketCard {
   rocket: Rocket,
-  cartAction: Function,
+  addToCart: Function
 }
 
-interface IRocketCard2 extends Rocket {
-  cartAction: Function;
-}
+// interface IRocketCard2 extends Rocket {
+//   cartAction: Function;
+// }
 
 const RocketCard: React.FC<IRocketCard> = ({
   rocket,
-  cartAction
-
+  addToCart
 }: IRocketCard) => {
   const classes = useStyles();
   const rocketPriceCurrency = Intl.NumberFormat("en-CA", {
     style: "currency",
     currency: "CAD",
   }).format(rocket.price as number);
-
+  
   return (
     <Grid item key={rocket.id} xs={12} sm={6} md={4} lg={3}>
       <Card className={classes.rocketCard}>
@@ -88,7 +88,7 @@ const RocketCard: React.FC<IRocketCard> = ({
               </Typography>
             </Grid>
             <Grid item>
-              <Button variant="contained" color="secondary" >
+              <Button variant="contained" color="secondary" onClick={() => addToCart(rocket)}>
                 Add to Cart
               </Button>
             </Grid>
@@ -101,6 +101,7 @@ const RocketCard: React.FC<IRocketCard> = ({
 
 const RocketGrid: React.FC<IRocketGrid> = ({
   rocketsConnection,
+  addToCart,
 }: IRocketGrid) => {
   const classes = useStyles();
   const rocketCards = [] as any;
@@ -109,7 +110,7 @@ const RocketGrid: React.FC<IRocketGrid> = ({
     rocketCards.push(
       <RocketCard
         rocket={rocketObject}
-        cartAction={() => console.log(rocketObject.id + ": " + rocketObject.model)}
+        addToCart={addToCart}
       />
     );
   }

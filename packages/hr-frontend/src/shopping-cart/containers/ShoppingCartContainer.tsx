@@ -1,11 +1,10 @@
-import { useSelector } from "react-redux"
 import React from "react";
 import { ShoppingCartPage } from "../../pages/ShoppingCartPage"
-import { RootState } from "../../common/redux/reducers/index"
+import { useShoppingCart } from "../hooks"
 
 export const ShoppingCartContainer = () => {
     
-    const shoppingCart = useSelector((state: RootState) => state.shoppingCart.shoppingCart);
+    const shoppingCart = useShoppingCart();
 
     return (
         <ShoppingCartPage shoppingCart={shoppingCart} />

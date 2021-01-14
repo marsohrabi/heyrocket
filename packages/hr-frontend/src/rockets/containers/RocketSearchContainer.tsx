@@ -4,6 +4,8 @@ import { useDispatch } from "react-redux";
 import { useRocketsPage } from "../redux/hooks";
 import { actions as rocketActions, RocketConnection } from "../redux/model";
 import RocketSearchGrid from "../views/RocketSearchGrid";
+import { actions as shoppingCartActions } from "../../shopping-cart/redux/model"
+
 
 const RocketSearchContainer: React.FC = () => {
   const [limit, setLimit] = useState(10);
@@ -30,6 +32,10 @@ const RocketSearchContainer: React.FC = () => {
     setOffset(offset + limit);
   };
 
+  const addToCart = (rocket) => {
+    dispatch(shoppingCartActions.addToCart(rocket))
+  }
+
   if (typeof rocketsRemoteData === "string") {
     return <div>Fetching rockets...</div>;
   } else {
@@ -41,6 +47,7 @@ const RocketSearchContainer: React.FC = () => {
           rocketConnection={rc}
           goBack={goBack}
           goForward={goForward}
+          addToCart={addToCart}
         />
       );
     } else {

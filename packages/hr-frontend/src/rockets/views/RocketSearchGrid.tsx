@@ -1,8 +1,7 @@
 import React from "react";
 import { makeStyles } from "@material-ui/styles";
 import { Button, Grid, Paper } from "@material-ui/core";
-import Header from "../../Header";
-import RocketGrid from "../../components/RocketGrid";
+import RocketGrid from "./RocketGrid"
 import {
   RocketConnection,
 } from "../redux/model";
@@ -27,12 +26,14 @@ interface IRocketSearchGrid {
   rocketConnection: Required<RocketConnection>;
   goForward: Function;
   goBack: Function;
+  addToCart: Function;
 }
 
 const RocketSearchGrid = ({
   rocketConnection,
   goForward,
   goBack,
+  addToCart
 }: IRocketSearchGrid) => {
   const classes = useStyles();
 
@@ -63,7 +64,7 @@ const RocketSearchGrid = ({
           get a speed boost. This shortens the time it takes to get to other
           destinations.
         </Paper>
-        <RocketGrid rocketsConnection={rocketConnection} />
+        <RocketGrid rocketsConnection={rocketConnection} addToCart={addToCart}/>
       </Grid>
       <Grid
         container
