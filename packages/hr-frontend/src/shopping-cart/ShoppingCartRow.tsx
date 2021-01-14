@@ -1,12 +1,27 @@
-import { ListItem, Grid } from "@material-ui/core";
+import { ListItem, Grid, makeStyles, createStyles, Theme, Typography } from "@material-ui/core";
 import React from "react";
 import { Rocket } from "../rockets/redux/model";
+
+const useStyles = makeStyles((theme: Theme) =>
+  createStyles({
+    text: {
+      marginLeft: "10px"
+    },
+  }),
+);
 
 interface IRocket{
     readonly rocket: Rocket
 }
 
 export const ShoppingCartRow: React.FC<IRocket> = ({rocket}) => {
+
+    const classes = useStyles();
+
+    const rocketPriceCurrency = Intl.NumberFormat("en-CA", {
+        style: "currency",
+        currency: "CAD",
+      }).format(rocket.price as number);
 
     return (
         <ListItem>
@@ -15,10 +30,10 @@ export const ShoppingCartRow: React.FC<IRocket> = ({rocket}) => {
                     <img src={rocket.image_url} alt='temp' width='100%' height='100%' />
                 </Grid>
                 <Grid xs={8}>
-                    {rocket.model}
+                    <Typography className={classes.text}>{rocket.model}</Typography>
                 </Grid>
                 <Grid xs={2}>
-                    ${rocket.price}
+                    {rocketPriceCurrency}
                 </Grid>
             </Grid>
         </ListItem>

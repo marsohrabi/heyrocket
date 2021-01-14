@@ -21,9 +21,14 @@ export interface ITotal {
 export const PurchaseWindow: React.FC<ITotal> = ({total}) => {
     const classes = useStyles();
 
+    const rocketPriceCurrency = Intl.NumberFormat("en-CA", {
+      style: "currency",
+      currency: "CAD",
+    }).format(total as number);
+
     return (
         <div className={classes.text}> 
-        <Typography> Total: ${total} </Typography>
+        <Typography> Total: {rocketPriceCurrency} </Typography>
         <PurchaseModalContainer />
         </div>
     )

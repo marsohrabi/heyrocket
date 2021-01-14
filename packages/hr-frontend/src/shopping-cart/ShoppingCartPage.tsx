@@ -1,7 +1,7 @@
 import React from 'react';
 import { createStyles, Grid, makeStyles, Theme } from '@material-ui/core';
-import { ShoppingCart } from '../shopping-cart/ShoppingCart'
-import { PurchaseWindow } from '../shopping-cart/PurchaseWindow'
+import { ShoppingCart } from './ShoppingCart'
+import { PurchaseWindow } from './PurchaseWindow'
 import { Rocket } from '../rockets/redux/model'
 
 const useStyles = makeStyles((theme: Theme) =>

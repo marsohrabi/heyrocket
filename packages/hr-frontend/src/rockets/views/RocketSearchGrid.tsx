@@ -12,6 +12,7 @@ const useStyles = makeStyles((theme) => ({
     width: "90%",
     textAlign: "center",
     marginBottom: 25,
+    marginTop: 25
   },
   pageButtonsDiv: {
     padding: "20px 0",

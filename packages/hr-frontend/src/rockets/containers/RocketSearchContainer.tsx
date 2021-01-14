@@ -8,7 +8,7 @@ import { actions as shoppingCartActions } from "../../shopping-cart/redux/model"
 
 
 const RocketSearchContainer: React.FC = () => {
-  const [limit, setLimit] = useState(10);
+  const [limit, setLimit] = useState(12);
   const [offset, setOffset] = useState(0);
 
   const rocketsRemoteData = useRocketsPage({

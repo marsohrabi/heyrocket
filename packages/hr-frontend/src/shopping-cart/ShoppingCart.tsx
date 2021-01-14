@@ -1,7 +1,7 @@
 import { List, Grid, ListItem, createStyles, makeStyles, Theme } from "@material-ui/core";
 import React from "react";
 import { ShoppingCartRow } from "./ShoppingCartRow"
-import { IShoppingCart } from "../pages/ShoppingCartPage"
+import { IShoppingCart } from "./ShoppingCartPage"
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({

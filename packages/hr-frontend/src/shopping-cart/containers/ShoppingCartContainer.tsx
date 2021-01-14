@@ -1,5 +1,5 @@
 import React from "react";
-import { ShoppingCartPage } from "../../pages/ShoppingCartPage"
+import { ShoppingCartPage } from "../ShoppingCartPage"
 import { useShoppingCart } from "../hooks"
 
 export const ShoppingCartContainer = () => {

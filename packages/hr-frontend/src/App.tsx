@@ -4,7 +4,7 @@ import ShoppingCartContainer from "./shopping-cart/containers/ShoppingCartContai
 import RocketSearchContainer from "./rockets/containers/RocketSearchContainer";
 import withPage from "./withPage";
 
-const LandingPage = React.lazy(() => import("./pages/LangingPage"));
+const LandingPage = React.lazy(() => import("./landing-page/LangingPage"));
 
 enum Routes {
   about = "/about",
