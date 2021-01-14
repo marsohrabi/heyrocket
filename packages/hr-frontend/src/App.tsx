@@ -50,6 +50,6 @@ const App: React.FC = () => {
   );
 };
 
-const withPageNumber = withPage(1);
+const withPageNumber = withPage();
 
 export default withPageNumber(App);

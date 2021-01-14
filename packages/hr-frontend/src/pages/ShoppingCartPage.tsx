@@ -1,9 +1,16 @@
 import React from 'react';
-import { Grid } from '@material-ui/core';
-import Header from '../Header';
+import { createStyles, Grid, makeStyles, Theme } from '@material-ui/core';
 import { ShoppingCart } from '../shopping-cart/ShoppingCart'
 import { PurchaseWindow } from '../shopping-cart/PurchaseWindow'
 import { Rocket } from '../rockets/redux/model'
+
+const useStyles = makeStyles((theme: Theme) =>
+  createStyles({
+    root: {
+      marginTop: "5px"
+    },
+  }),
+);
 
 export interface IShoppingCart {
     shoppingCart: ReadonlyArray<Rocket>;
@@ -13,11 +20,10 @@ export const ShoppingCartPage: React.FC<IShoppingCart> = ({shoppingCart}: IShopp
 
     const total = shoppingCart.reduce((a, b) => a + b.price!, 0);
 
+    const classes = useStyles();
+
     return (
-        <Grid container spacing={3}>
-            <Grid item xs={12}>
-                <Header />
-            </Grid>
+        <Grid container spacing={3} className={classes.root}>
             <Grid item xs={8}>
                 <ShoppingCart shoppingCart={shoppingCart}/>
             </Grid>

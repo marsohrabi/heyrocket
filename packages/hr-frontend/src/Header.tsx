@@ -38,10 +38,6 @@ const Header: React.FC = () => {
         dispatch(navigationActions.toSearch());
     };
 
-    const toAbout = () => {
-        dispatch(navigationActions.toAbout());
-    };
-
     const toCart = () => {
         dispatch(navigationActions.toCart());
     };
@@ -56,9 +52,6 @@ const Header: React.FC = () => {
                 break;
             case "search":
                 toSearch();
-                break;
-            case "about":
-                toAbout();
                 break;
             case "cart":
                 toCart();
@@ -84,10 +77,6 @@ const Header: React.FC = () => {
                     <Tab
                         label="Search"
                         onClick={() => handleNavClick("search")}
-                    />
-                    <Tab
-                        label="About"
-                        onClick={() => handleNavClick("about")}
                     />
                     <Tab
                         label={<ShoppingCartIcon
