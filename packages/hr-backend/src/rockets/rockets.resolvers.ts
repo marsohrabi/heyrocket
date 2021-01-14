@@ -21,7 +21,9 @@ export class RocketsResolvers {
     @UseInterceptors(TransformHeadersInterceptor)
     @Query()
     @UseGuards(RocketsGuard)
-    async pages(@Args("params") params: PageParams): Promise<RocketConnection> {
+    async getRocketPages(@Args("params") params: PageParams): Promise<RocketConnection> {
+
+        console.log(params)
         //console.time('page');
         const toReturn = await this.rocketsService.pages(params);
         //console.timeEnd('page');

@@ -1,5 +1,5 @@
 
-import { Rocket } from './model';
+import { PageParams, Rocket, RocketConnection } from './model';
 import { all, call, put, takeLatest } from 'redux-saga/effects';
 import { DocumentNode } from "graphql"
 
@@ -46,12 +46,14 @@ const fetchRocketsPageAsync = createAsyncAction(
     "FETCH_ROCKETS_PAGE",
     "RECEIVE_ROCKETS_PAGE",
     "FETCH_ROCKETS_PAGE_ERROR"
-)<any, any, any>();
+)<{ params: PageParams }, { getRocketPages: RocketConnection }, any>();
 
 
 const fetchRocketsPageQuery = gql`
-    query findPage {
-        findPage(pageNum: $pageNum) {
+    query getRocketPages($params:PageParams){
+    getRocketPages(params:$params){
+        totalCount
+        rockets{
             id
             model
             price
@@ -59,19 +61,23 @@ const fetchRocketsPageQuery = gql`
             image_url
         }
     }
+}
 `
 
 interface IFetchRocketsPageResult {
-    getRockets: Rocket[]
+    getRocketPages: RocketConnection
 }
 
-function* fetchRocketsPage(pageNum: number) {
-    const rockets: IFetchRocketsPageResult = yield call(fetcher, fetchRocketsPageQuery, pageNum);
-    yield put(fetchRocketsPageAsync.success({ rockets: rockets.getRockets }))
+
+function* fetchRocketsPage(action: ReturnType<typeof fetchRocketsPageAsync.request>) {
+    const rockets: IFetchRocketsPageResult = yield call(fetcher, fetchRocketsPageQuery, { params: action.payload.params });
+
+
+    yield put(fetchRocketsPageAsync.success({ getRocketPages: rockets.getRocketPages }))
 }
 
 function* handleFetchRocketsPage() {
-    yield takeLatest("FETCH_ROCKETS_PAGE", fetchRocketsPage, 2);
+    yield takeLatest("FETCH_ROCKETS_PAGE", fetchRocketsPage);
 }
 
 

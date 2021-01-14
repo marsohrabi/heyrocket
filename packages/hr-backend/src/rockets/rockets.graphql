@@ -1,12 +1,5 @@
-type Query {
-    getRockets: [Rocket]
-    pages(params: PageParams): RocketConnection!
-    rocket(id: ID!): Rocket
-    findPage(pageNum: Int!): [Rocket]
-}
-
 type Rocket {
-    id: Int
+    id: Int!
     model: String
     price: Int
     description: String
@@ -21,4 +14,11 @@ type RocketConnection {
 input PageParams {
     limit: Int!
     offset: Int!
+}
+
+type Query {
+    getRockets: [Rocket]
+    getRocketPages(params: PageParams): RocketConnection!
+    rocket(id: ID!): Rocket
+    findPage(pageNum: Int!): [Rocket]
 }

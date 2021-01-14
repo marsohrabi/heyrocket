@@ -11,18 +11,8 @@ export class PageParams {
     offset: number;
 }
 
-export abstract class IQuery {
-    abstract getRockets(): Rocket[] | Promise<Rocket[]>;
-
-    abstract pages(params?: PageParams): RocketConnection | Promise<RocketConnection>;
-
-    abstract rocket(id: string): Rocket | Promise<Rocket>;
-
-    abstract findPage(pageNum: number): Rocket[] | Promise<Rocket[]>;
-}
-
 export class Rocket {
-    id?: number;
+    id: number;
     model?: string;
     price?: number;
     description?: string;
@@ -32,4 +22,14 @@ export class Rocket {
 export class RocketConnection {
     totalCount: number;
     rockets?: Rocket[];
+}
+
+export abstract class IQuery {
+    abstract getRockets(): Rocket[] | Promise<Rocket[]>;
+
+    abstract getRocketPages(params?: PageParams): RocketConnection | Promise<RocketConnection>;
+
+    abstract rocket(id: string): Rocket | Promise<Rocket>;
+
+    abstract findPage(pageNum: number): Rocket[] | Promise<Rocket[]>;
 }

@@ -1,8 +1,7 @@
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux"
-
 import { RootState } from "../../common/redux/reducers/index"
-
-import { actions } from "./model"
+import { actions, PageParams } from "./model"
 
 export const useRockets = () => {
 
@@ -23,13 +22,17 @@ export const useRockets = () => {
 
 }
 
-export const useRocketsPage = (pageNum: number) => {
+export const useRocketsPage = ({ limit, offset }: PageParams) => {
     const dispatch = useDispatch();
 
-    const rocketsPageRemoteData = useSelector((state: RootState) => state.rockets.rockets);
+    const rocketsPageRemoteData = useSelector((state: RootState) => state.rockets.rocketsConnection);
+
+    useEffect(() => {
+        dispatch(actions.fetchRocketsPage({ limit, offset }))
+    }, [limit, offset])
 
     if (rocketsPageRemoteData === "Initialized") {
-        dispatch(actions.fetchRocketsPage(2))
+        dispatch(actions.fetchRocketsPage({ limit, offset }))
     }
 
     if (rocketsPageRemoteData !== "Initialized" && rocketsPageRemoteData !== "Failure" && rocketsPageRemoteData !== "Pending") {
