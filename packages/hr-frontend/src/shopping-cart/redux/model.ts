@@ -24,16 +24,11 @@ const initialState: IModel = {
     shoppingCart: new Array<Rocket>()
 }
 
-interface IAddTransaction {
-    transaction: inputTransaction;
-}
-
-
 export const actions = {
     fetchTransactions: () => action("FETCH_TRANSACTIONS", {}),
     recieveTransactions: (transactions: Transaction[]) => action("RECEIVE_TRANSACTIONS",  {transactions} ),
     fetchTransactionsFailure: (e: string) => action("FETCH_TRANSACTION_FAILURE", { e }),
-    addTransaction: (p: IAddTransaction) => action("ADD_TRANSACTION"),
+    addTransaction: (p: number) => action("ADD_TRANSACTION", p),
     addToCart: (p: Rocket) => action("ADD_TO_CART", p),
     emptyCart: () => action("EMPTY_CART")
 }

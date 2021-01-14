@@ -1,6 +1,6 @@
 import React, { Suspense } from "react";
 import { Route, Switch } from "react-router";
-import ShoppingCartContainer from "./containers/ShoppingCartContainer";
+import ShoppingCartContainer from "./shopping-cart/containers/ShoppingCartContainer"
 import { useRockets } from "./rockets/redux/hooks";
 
 const LandingPage = React.lazy(() => import("./pages/LangingPage"));

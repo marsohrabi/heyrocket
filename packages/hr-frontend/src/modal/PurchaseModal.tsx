@@ -1,9 +1,5 @@
 import { Theme, makeStyles, createStyles, Modal, Button } from "@material-ui/core";
 import React from "react";
-import { actions as modalActions } from "./redux/model";
-import { actions as shoppingCartActions } from "../shopping-cart/redux/model"
-import { useDispatch } from "react-redux";
-import { useModal } from "./redux/hooks";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -21,21 +17,16 @@ const useStyles = makeStyles((theme: Theme) =>
   }),
 );
 
-export const PurchaseModal: React.FC = () => {
-    const dispatch = useDispatch();
-    const modal = useModal();
+interface IPurchaseModal {
+  open: boolean;
+  handleClose: () => void
+  handleOpen: () => void
+}
+
+export const PurchaseModal: React.FC<IPurchaseModal> = ({open,handleClose, handleOpen}: IPurchaseModal) => {
     const classes = useStyles();
 
-    const handleOpen = () => {
-        // dispatch(shoppingCartActions.addTransaction());
-        dispatch(shoppingCartActions.emptyCart)();
-        dispatch(modalActions.openModal());
-    }
-
-    const handleClose = () => {
-        dispatch(modalActions.closeModal());
-    };
-
+   
 
     const body = (
         <div className={classes.paper}>
@@ -52,7 +43,7 @@ export const PurchaseModal: React.FC = () => {
             Complete Purchase
         </Button>
             <Modal
-                open={modal.openModal}
+                open={open}
                 onClose={handleClose}
             >
                 {body}

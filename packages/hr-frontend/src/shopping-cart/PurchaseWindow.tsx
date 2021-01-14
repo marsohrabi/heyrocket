@@ -1,6 +1,6 @@
 import { Theme, makeStyles, createStyles, Typography } from "@material-ui/core";
 import React from "react";
-import { PurchaseModal } from "./PurchaseModal";
+import { PurchaseModalContainer } from "../modal/containers/PurchaseModalContainer";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -24,7 +24,7 @@ export const PurchaseWindow: React.FC<ITotal> = ({total}) => {
     return (
         <div className={classes.text}> 
         <Typography> Total: ${total} </Typography>
-        <PurchaseModal />
+        <PurchaseModalContainer />
         </div>
     )
 }
