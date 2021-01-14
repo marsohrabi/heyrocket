@@ -41,9 +41,44 @@ function* handleFetchRockets() {
     yield takeLatest("FETCH_ROCKETS", fetchRockets);
 }
 
+
+const fetchRocketsPageAsync = createAsyncAction(
+    "FETCH_ROCKETS_PAGE",
+    "RECEIVE_ROCKETS_PAGE",
+    "FETCH_ROCKETS_PAGE_ERROR"
+)<any, any, any>();
+
+
+const fetchRocketsPageQuery = gql`
+    query findPage {
+        findPage(pageNum: $pageNum) {
+            id
+            model
+            price
+            description
+            image_url
+        }
+    }
+`
+
+interface IFetchRocketsPageResult {
+    getRockets: Rocket[]
+}
+
+function* fetchRocketsPage(pageNum: number) {
+    const rockets: IFetchRocketsPageResult = yield call(fetcher, fetchRocketsPageQuery, pageNum);
+    yield put(fetchRocketsPageAsync.success({ rockets: rockets.getRockets }))
+}
+
+function* handleFetchRocketsPage() {
+    yield takeLatest("FETCH_ROCKETS_PAGE", fetchRocketsPage, 2);
+}
+
+
 export default function* rootSaga() {
     yield all([
         handleFetchRockets(),
+        handleFetchRocketsPage(),
     ]);
 }
 

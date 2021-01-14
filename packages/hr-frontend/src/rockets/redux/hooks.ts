@@ -22,3 +22,20 @@ export const useRockets = () => {
     return rocketsRemoteData;
 
 }
+
+export const useRocketsPage = (pageNum: number) => {
+    const dispatch = useDispatch();
+
+    const rocketsPageRemoteData = useSelector((state: RootState) => state.rockets.rockets);
+
+    if (rocketsPageRemoteData === "Initialized") {
+        dispatch(actions.fetchRocketsPage(2))
+    }
+
+    if (rocketsPageRemoteData !== "Initialized" && rocketsPageRemoteData !== "Failure" && rocketsPageRemoteData !== "Pending") {
+        console.log("Returning rocket page data");
+        return rocketsPageRemoteData
+    }
+
+    return rocketsPageRemoteData;
+}
