@@ -39,12 +39,8 @@ interface IRocketGrid {
 }
 
 interface IRocketCard {
-  rocketId: number;
-  rocketModel: string;
-  rocketPrice: number;
-  rocketDescription: string;
-  rocketImage: string;
-  cartAction: Function;
+  rocket: Rocket,
+  cartAction: Function,
 }
 
 interface IRocketCard2 extends Rocket {
@@ -52,33 +48,30 @@ interface IRocketCard2 extends Rocket {
 }
 
 const RocketCard: React.FC<IRocketCard> = ({
-  rocketId,
-  rocketModel,
-  rocketPrice,
-  rocketDescription,
-  rocketImage,
-  cartAction,
+  rocket,
+  cartAction
+
 }: IRocketCard) => {
   const classes = useStyles();
   const rocketPriceCurrency = Intl.NumberFormat("en-CA", {
     style: "currency",
     currency: "CAD",
-  }).format(rocketPrice);
+  }).format(rocket.price as number);
 
   return (
-    <Grid item key={rocketId} xs={12} sm={6} md={4} lg={3}>
+    <Grid item key={rocket.id} xs={12} sm={6} md={4} lg={3}>
       <Card className={classes.rocketCard}>
-        <CardHeader title={rocketModel} />
+        <CardHeader title={rocket.model} />
 
         <CardMedia
-          image={rocketImage}
+          image={rocket.image_url}
           className={classes.media}
-          title={rocketModel}
+          title={rocket.model}
         />
 
         <CardContent>
           <ShowMoreText lines={3} more="more">
-            {rocketDescription}
+            {rocket.description}
           </ShowMoreText>
         </CardContent>
 
@@ -95,7 +88,7 @@ const RocketCard: React.FC<IRocketCard> = ({
               </Typography>
             </Grid>
             <Grid item>
-              <Button variant="contained" color="secondary">
+              <Button variant="contained" color="secondary" >
                 Add to Cart
               </Button>
             </Grid>
@@ -115,17 +108,8 @@ const RocketGrid: React.FC<IRocketGrid> = ({
   for (const rocketObject of rocketsConnection.rockets) {
     rocketCards.push(
       <RocketCard
-        key={rocketObject["id"]}
-        rocketId={rocketObject["id"]}
-        rocketModel={rocketObject["model"] ? rocketObject["model"] : "no model"}
-        rocketPrice={rocketObject["price"] ? rocketObject["price"] : 0}
-        rocketDescription={
-          rocketObject["description"]
-            ? rocketObject["description"]
-            : "no description"
-        }
-        rocketImage={rocketObject["image_url"] ? rocketCards["image_url"] : "#"}
-        cartAction={() => console.log(rocketObject["id"])}
+        rocket={rocketObject}
+        cartAction={() => console.log(rocketObject.id + ": " + rocketObject.model)}
       />
     );
   }
