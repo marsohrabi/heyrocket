@@ -1,5 +1,6 @@
 import React, { Suspense } from "react";
 import { Route, Switch } from "react-router";
+import ShoppingCartContainer from "./containers/ShoppingCartContainer";
 import { useRockets } from "./rockets/redux/hooks";
 
 const LandingPage = React.lazy(() => import("./pages/LangingPage"));
@@ -25,7 +26,7 @@ const App: React.FC = () => {
           <Route
             path="/cart"
             render={() => {
-              return "Shopping cart";
+              return <ShoppingCartContainer/>;
             }}
           />
           <Route

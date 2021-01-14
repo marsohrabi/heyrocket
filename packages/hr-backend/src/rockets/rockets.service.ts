@@ -21,35 +21,18 @@ export class RocketsService {
 
 
 
-        // const allRockets = await this.rocketsRepository.findAll({
-        //     limit: 20
-        // });
-        // const gqlRockets: Rocket[] = allRockets.map((c) => {
-        //     return {
-        //         model: c.model,
-        //         id: c.id,
-        //         price: c.price,
-        //         description: c.description
-        //     };
-        // });
-        // return gqlRockets;
-
-
-        //TEMP
-
-
-        const gqlRockets: Rocket[] = [
-            {
-                model: "sample model",
-                id: 1,
-                price: 1000,
-                description: "sample description"
-            }
-        ]
-
-        return gqlRockets
-
-
+        const allRockets = await this.rocketsRepository.findAll({
+            limit: 20
+        });
+        const gqlRockets: Rocket[] = allRockets.map((c) => {
+            return {
+                model: c.model,
+                id: c.id,
+                price: c.price,
+                description: c.description
+            };
+        });
+        return gqlRockets;
     }
 
     async pages(params: PageParams): Promise<RocketConnection> {

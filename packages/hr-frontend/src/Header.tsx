@@ -31,6 +31,10 @@ const Header: React.FC = () => {
         dispatch(navigationActions.toSearch());
     };
 
+    const toCart = () => {
+        dispatch(navigationActions.toCart());
+    }
+
     type navType = "search" | "home" | "about" | "cart";
 
     const handleNavClick = (selectedNav: navType) => {
@@ -73,7 +77,7 @@ const Header: React.FC = () => {
                     <Tab
                         label={<ShoppingCartIcon
                             fontSize="large" />}
-                        onClick={() => handleNavClick("cart")}
+                        onClick={toCart}
                     />
                 </Toolbar>
 
