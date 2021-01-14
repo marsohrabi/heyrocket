@@ -2,6 +2,7 @@ type Query {
     getRockets: [Rocket]
     pages(params: PageParams): RocketConnection!
     rocket(id: ID!): Rocket
+    findPage(pageNum: Int!): [Rocket]
 }
 
 type Rocket {

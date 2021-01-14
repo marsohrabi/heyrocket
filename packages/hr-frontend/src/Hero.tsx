@@ -41,7 +41,7 @@ const Hero: React.FC<IHero> = ({ toSearch }: IHero) => {
         justify="center"
         style={{ width: "80vw" }}
       >
-        <Grid item justify="flex-start" xs={3} style={{ textAlign: "start" }}>
+        <Grid item /* justify="flex-start"  */xs={3} style={{ textAlign: "start" }}>
           <Typography variant="h2">Achieve liftoff.</Typography>
           <Button variant="contained" color="secondary" onClick={() => {toSearch()}}>
             View rockets <ChevronRightIcon />

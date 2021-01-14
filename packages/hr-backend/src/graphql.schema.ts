@@ -17,6 +17,8 @@ export abstract class IQuery {
     abstract pages(params?: PageParams): RocketConnection | Promise<RocketConnection>;
 
     abstract rocket(id: string): Rocket | Promise<Rocket>;
+
+    abstract findPage(pageNum: number): Rocket[] | Promise<Rocket[]>;
 }
 
 export class Rocket {
