@@ -29,7 +29,7 @@ export const useRocketsPage = ({ limit, offset }: PageParams) => {
 
     useEffect(() => {
         dispatch(actions.fetchRocketsPage({ limit, offset }))
-    }, [limit, offset])
+    }, [dispatch, limit, offset])
 
     if (rocketsPageRemoteData === "Initialized") {
         dispatch(actions.fetchRocketsPage({ limit, offset }))

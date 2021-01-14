@@ -28,7 +28,11 @@ export const actions = {
     fetchTransactions: () => action("FETCH_TRANSACTIONS", {}),
     recieveTransactions: (transactions: Transaction[]) => action("RECEIVE_TRANSACTIONS",  {transactions} ),
     fetchTransactionsFailure: (e: string) => action("FETCH_TRANSACTION_FAILURE", { e }),
+    
     addTransaction: (p: number) => action("ADD_TRANSACTION", p),
+    receiveAddedCity: (transaction: number) => action("RECEIVE_ADDED_TRANSACTION", transaction),
+    addTransactioNError: (error: number) => action("ADD_TRANSACTION_ERROR", error),
+    
     addToCart: (p: Rocket) => action("ADD_TO_CART", p),
     emptyCart: () => action("EMPTY_CART")
 }

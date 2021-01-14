@@ -4,7 +4,7 @@ import { DocumentNode } from "graphql"
 
 import gql from "graphql-tag";
 import { client } from "../../common/redux/gqlClient";
-import { createAsyncAction } from 'typesafe-actions';
+import { action, createAsyncAction } from 'typesafe-actions';
 
 export class Transaction {
     id?: number;
@@ -13,8 +13,8 @@ export class Transaction {
 
 const addTransactionAsync = createAsyncAction(
     "ADD_TRANSACTION",
-    "ADD_TRANSACTION_SUCCESS",
-    "ADD_TRANSACTION_FAILURE"
+    "RECEIVED_ADDED_TRANSACTION",
+    "ADD_TRANSACTION_ERROR"
 )<any, any, any>();
 
 const fetcher = <F, P>(q: DocumentNode, a?: F) => client.request<P>(q, a);
@@ -28,13 +28,8 @@ const mutationCreateTransaction = gql`
     }
 `;
 
-interface IReceiveAddTransaction {
-    createTransaction: Transaction;
-}
-
-function* AddTransaction() {
-    const transaction: IReceiveAddTransaction = yield call(fetcher, mutationCreateTransaction);
-    yield put(addTransactionAsync.success({ transaction: transaction.createTransaction }))
+function* AddTransaction(action: ReturnType<typeof addTransactionAsync.request>) {
+    const response = yield call(fetcher, mutationCreateTransaction, action.payload);
 }
 
 function* watchAddTransaction() {
