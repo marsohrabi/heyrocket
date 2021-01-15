@@ -21,9 +21,11 @@ const RocketSearchContainer: React.FC = () => {
   const reset = compose(dispatch, rocketActions.resetRocketsPage);
 
   const goBack = () => {
-    reset();
-    setLimit(12);
+    if (offset > 0) {
+      reset();
+      setLimit(12);
     setOffset(offset - limit);
+    }
   };
 
   const goForward = () => {

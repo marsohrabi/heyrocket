@@ -109,6 +109,7 @@ const RocketGrid: React.FC<IRocketGrid> = ({
   for (const rocketObject of rocketsConnection.rockets) {
     rocketCards.push(
       <RocketCard
+        key={rocketObject.id}
         rocket={rocketObject}
         addToCart={addToCart}
       />
