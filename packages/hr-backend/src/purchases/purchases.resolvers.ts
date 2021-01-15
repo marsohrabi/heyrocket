@@ -21,6 +21,7 @@ export class PurchasesResolvers {
 
     @Mutation(() => GqlPurchase)
     async createPurchase(@Args("inputPurchase") inputPurchase: InputPurchase) {
+        console.log(inputPurchase)
         return this.purchasesService.createPurchase(inputPurchase);
     }
 }
