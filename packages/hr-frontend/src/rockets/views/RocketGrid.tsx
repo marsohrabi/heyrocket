@@ -44,10 +44,6 @@ interface IRocketCard {
   addToCart: Function
 }
 
-// interface IRocketCard2 extends Rocket {
-//   cartAction: Function;
-// }
-
 const RocketCard: React.FC<IRocketCard> = ({
   rocket,
   addToCart

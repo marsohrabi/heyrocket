@@ -29,10 +29,10 @@ export const ShoppingCartRow: React.FC<IRocket> = ({rocket}) => {
                 <Grid item xs={2}>
                     <img src={rocket.image_url} alt='temp' width='100%' height='100%' />
                 </Grid>
-                <Grid xs={8}>
+                <Grid item xs={8}>
                     <Typography className={classes.text}>{rocket.model}</Typography>
                 </Grid>
-                <Grid xs={2}>
+                <Grid item xs={2}>
                     {rocketPriceCurrency}
                 </Grid>
             </Grid>

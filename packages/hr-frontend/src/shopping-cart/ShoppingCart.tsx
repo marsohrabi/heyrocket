@@ -23,13 +23,13 @@ export const ShoppingCart: React.FC<IShoppingCart> = ({shoppingCart}) => {
                         <Grid item xs={10} className={classes.text}>
                             Shopping List
                         </Grid>
-                        <Grid xs={2}>
+                        <Grid item xs={2}>
                             Price
                         </Grid>
                     </Grid>
                 </ListItem>
                 {shoppingCart.map((rocket) => (
-                    <ShoppingCartRow rocket={rocket} />
+                    <ShoppingCartRow key={rocket.id} rocket={rocket} />
                 ))}
             </List>
         </Grid>
