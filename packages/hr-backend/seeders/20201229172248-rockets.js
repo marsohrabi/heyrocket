@@ -11,6 +11,16 @@ const imgs = [
     '2lailvHTNbU',
     'OqSm1Dqo7zE',
     'Oz5ASaHuCm0',
+    'gh2x8Ie1OWg',
+    'DnNOk7_ydHU',
+    'b-88UFvOhtQ',
+    '8QbAZEZ0sGk',
+    'pGXUwHZQ5eI',
+    'e2brBgv0tkM',
+    '_hiRfVJ2j10',
+    'bE8XQhdEZc4',
+    'xJ1RlmD_hHU',
+    'tXBhT92wSN8',
 ]
 
 module.exports = {
