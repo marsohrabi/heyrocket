@@ -19,6 +19,7 @@
         "test:e2e": "echo 'No e2e tests implemented yet.'",
         "generate-typings": "ts-node src/generate-typings",
         "create-db": "npx sequelize-cli db:create",
+        "migrate-db": "npx sequelize-cli db:migrate",
         "drop-db": "npx sequelize-cli db:drop",
         "seed-db": "npx sequelize-cli db:seed:all"
     },

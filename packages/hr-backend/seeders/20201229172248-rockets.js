@@ -15,7 +15,7 @@ const imgs = [
 
 module.exports = {
     up: async (queryInterface, Sequelize) => {
-        const count = 1000000;
+        const count = 1000;
         const rockets = _.times(count, () => {
             const now = new Date();
             return {
@@ -24,9 +24,9 @@ module.exports = {
                 image_url: "https://source.unsplash.com/" +
                 faker.helpers.randomize(imgs) +
                 "/600x400",
-                description: faker.lorem.paragraph(),
+                description: faker.lorem.sentences(2),
                 updated_at: now,
-                created_at: now
+                created_at: now,
             };
         });
         return await queryInterface.bulkInsert("rockets", rockets, {});

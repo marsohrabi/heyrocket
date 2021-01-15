@@ -23,10 +23,7 @@ export class RocketsResolvers {
     @UseGuards(RocketsGuard)
     async getRocketPages(@Args("params") params: PageParams): Promise<RocketConnection> {
 
-        console.log(params)
-        //console.time('page');
         const toReturn = await this.rocketsService.pages(params);
-        //console.timeEnd('page');
 
         return toReturn
     }
@@ -40,11 +37,11 @@ export class RocketsResolvers {
         return toReturn;
     }
 
-    @Query("rocket")
+    /* @Query()
     async findOneById(
         @Args("id", ParseIntPipe)
         id: number
     ): Promise<Rocket> {
         return this.rocketsService.findOneById(id)
-    }
+    } */
 }
