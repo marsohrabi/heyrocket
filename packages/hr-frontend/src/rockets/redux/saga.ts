@@ -70,8 +70,9 @@ interface IFetchRocketsPageResult {
 
 
 function* fetchRocketsPage(action: ReturnType<typeof fetchRocketsPageAsync.request>) {
-    const rockets: IFetchRocketsPageResult = yield call(fetcher, fetchRocketsPageQuery, { params: action.payload.params });
 
+    const rockets: IFetchRocketsPageResult = yield call(fetcher, fetchRocketsPageQuery, { params: action.payload.params });
+            
 
     yield put(fetchRocketsPageAsync.success({ getRocketPages: rockets.getRocketPages }))
 }

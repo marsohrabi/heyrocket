@@ -23,6 +23,8 @@ export class RocketsResolvers {
     @UseGuards(RocketsGuard)
     async getRocketPages(@Args("params") params: PageParams): Promise<RocketConnection> {
 
+        console.log(params)
+
         const toReturn = await this.rocketsService.pages(params);
 
         return toReturn

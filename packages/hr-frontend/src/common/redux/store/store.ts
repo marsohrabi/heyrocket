@@ -7,6 +7,7 @@ import createSagaMiddleware from "redux-saga";
 import createRootReducer from "../reducers";
 import navigationRootSaga from '../../../navigation/redux/sagas';
 import rocketsRootSaga from "../../../rockets/redux/saga";
+import shoppingCartRootSaga from "../../../shopping-cart/redux/saga"
 
 const logger = createLogger({
     predicate: () => process.env.NODE_ENV !== "production",
@@ -23,5 +24,6 @@ const store = createStore(
 
 sagaMiddleware.run(navigationRootSaga);
 sagaMiddleware.run(rocketsRootSaga);
+sagaMiddleware.run(shoppingCartRootSaga);
 
 export default store;
