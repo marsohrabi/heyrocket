@@ -4,7 +4,7 @@ import { combineReducers } from "redux";
 
 import { reducer as navigationReducer } from '../../../navigation/redux/model';
 import { reducer as rocketsReducer } from "../../../rockets/redux/model";
-import {reducer as modalReducer } from "../../../modal/redux/model";
+import { reducer as modalReducer } from "../../../modal/redux/model";
 import { reducer as shoppingCartReducer } from "../../../shopping-cart/redux/model"
 
 const createRootReducer = (history: History) =>
