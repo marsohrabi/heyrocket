@@ -2,6 +2,7 @@ import React from 'react';
 import { makeStyles } from '@material-ui/styles';
 import { Grid, Paper, Typography } from '@material-ui/core';
 import Hero from './Hero';
+import { Autorenew } from '@material-ui/icons';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -25,11 +26,23 @@ const useStyles = makeStyles((theme) => ({
         padding: "10px 30px",
         maxWidth: "100%",
     },
+    customersText: {
+        marginTop: 25,
+    },
+    customerImage: {
+        width: 250,
+        height: 250,
+        borderRadius: "50%",
+        margin: 20
+    }
 }));
 
 
 const Landing: React.FC = () => {
     const classes = useStyles();
+    const spacedog = process.env.PUBLIC_URL + "/spacedog.png";
+    const spacemonkey = process.env.PUBLIC_URL + "/spacemonkey.jpeg";
+
 
     return (
         <div id="id2" className={classes.root}>
@@ -46,8 +59,8 @@ const Landing: React.FC = () => {
                         </Typography>
                     HeyRocket offers snapshots of rockets with their price and 1-click add to cart ability. One search, one page, one set of
                     results. Effortlessly manage the process. It's as easy as: 1. Add to Cart 2. Buy. Rocket buying should always be easy.
-                    We are also the only rocket selling company after we destroyed rockettrader. You got no choice! Whether your goals are
-                    world domination or mars colonisation, make the shift to HeyRocket, the fastest (and only) growing rocket listing platform
+                    We are also the only rocket selling company after we destroyed RocketTrader. You've got no choice! Whether your goals are
+                    world domination or Mars colonisation, make the shift to HeyRocket, the fastest (and only) growing rocket listing platform
                     on the market.
                     </Grid>
                     <Grid item xs={6}>
@@ -57,7 +70,12 @@ const Landing: React.FC = () => {
                     We provide the best rockets which may or may not have been stolen from SpaceX's garage.
                      </Grid>
                 </Grid>
-                Let me tell you about how awesome HeyRocket is and convince you to buy a rocket.
+                <Typography variant="h5">
+                    Happy Customers
+                </Typography>
+                <img src={spacedog} className={classes.customerImage} />
+                <img src={spacemonkey} className={classes.customerImage} />
+
             </Paper >
         </div>
 

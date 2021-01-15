@@ -44,10 +44,6 @@ interface IRocketCard {
   addToCart: Function
 }
 
-// interface IRocketCard2 extends Rocket {
-//   cartAction: Function;
-// }
-
 const RocketCard: React.FC<IRocketCard> = ({
   rocket,
   addToCart
@@ -109,6 +105,7 @@ const RocketGrid: React.FC<IRocketGrid> = ({
   for (const rocketObject of rocketsConnection.rockets) {
     rocketCards.push(
       <RocketCard
+        key={rocketObject.id}
         rocket={rocketObject}
         addToCart={addToCart}
       />
