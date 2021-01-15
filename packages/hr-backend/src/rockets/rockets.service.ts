@@ -74,7 +74,7 @@ export class RocketsService {
         return { totalCount: page.count, rockets: gqlRockets };
     }
 
-    findOneById(id: number): Rocket {
+    /* findOneById(id: number): Rocket {
         const found = this.rockets.find((rocket) => rocket.id === id);
 
         if (!found) {
@@ -82,7 +82,7 @@ export class RocketsService {
         }
 
         return found;
-    }
+    } */
 
 
 
