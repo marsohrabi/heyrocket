@@ -1,6 +1,7 @@
 import { Module } from "@nestjs/common";
 import { GraphQLModule } from "@nestjs/graphql";
 import { RocketsModule } from "./rockets/rockets.module";
+import { PurchasesModule } from './purchases/purchases.module'; 
 import { DatabaseModule } from './database/database.module';
 import { MemcachedCache } from 'apollo-server-cache-memcached'
 
@@ -27,19 +28,20 @@ const extensions = [() => new ApolloLogExtension()];
                 keepAlive: 0
             },
             cacheControl: {
-            	defaultMaxAge: 0,
-            	stripFormattedExtensions: true,
-            	calculateHttpHeaders: true
+                defaultMaxAge: 0,
+                stripFormattedExtensions: true,
+                calculateHttpHeaders: true
             },
             persistedQueries: {
-            	cache: new MemcachedCache(
-            		['memcached-server-1', 'memcached-server-2', 'memcached-server-3'],
-            		{ retries: 10, retry: 10000 }
-            	)
+                cache: new MemcachedCache(
+                    ['memcached-server-1', 'memcached-server-2', 'memcached-server-3'],
+                    { retries: 10, retry: 10000 }
+                )
             },
         }),
         DatabaseModule,
         RocketsModule,
+        PurchasesModule,
     ],
 })
 export class AppModule { }

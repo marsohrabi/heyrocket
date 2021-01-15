@@ -1,0 +1,26 @@
+scalar Date
+
+type Purchase {
+    id: Int!
+    amount: Int!
+    created_at: Date
+}
+
+type PurchaseConnection {
+    totalCount: Int!
+    purchases: [Purchase]
+}
+
+input InputPurchase {
+    id: Int
+    amount: Int!
+}
+
+type Query {
+    getPurchases: [Purchase]
+    getPurchase(id: Int!): Purchase
+}
+
+type Mutation {
+    createPurchase(inputPurchase: InputPurchase!): Purchase!
+}

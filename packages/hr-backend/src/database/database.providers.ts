@@ -1,5 +1,6 @@
 import { Sequelize } from 'sequelize-typescript';
 import { RocketEntity } from '../rockets/rocket.entity';
+import { PurchaseEntity } from '../purchases/purchase.entity';
 
 export const databaseProviders = [
     {
@@ -23,7 +24,7 @@ export const databaseProviders = [
                 logging: false,
                 ssl: true,
             });
-            sequelize.addModels([RocketEntity]);
+            sequelize.addModels([RocketEntity, PurchaseEntity]);
             await sequelize.sync();
             return sequelize;
         },
