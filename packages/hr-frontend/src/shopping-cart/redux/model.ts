@@ -21,7 +21,7 @@ interface IModel {
 
 const initialState: IModel = {
     transactions: "Initialized",
-    shoppingCart: new Array<Rocket>()
+    shoppingCart: new Array<Rocket>(),
 }
 
 export const actions = {
@@ -34,7 +34,7 @@ export const actions = {
     addTransactioNError: (error: number) => action("ADD_TRANSACTION_ERROR", error),
     
     addToCart: (p: Rocket) => action("ADD_TO_CART", p),
-    emptyCart: () => action("EMPTY_CART")
+    emptyCart: () => action("EMPTY_CART"),
 }
 
 export type ActionType = ActionT<typeof actions>
@@ -68,14 +68,13 @@ export const reducer = (state: IModel = initialState, action: ActionType): IMode
 
             }
         }
-
         case "EMPTY_CART": {
             return {
                 ...state,
                 shoppingCart: new Array<Rocket>(),
             }
-
         }
+
         default: {
             return state
         }

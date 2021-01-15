@@ -22,13 +22,13 @@ const RocketSearchContainer: React.FC = () => {
 
   const goBack = () => {
     reset();
-    setLimit(10);
+    setLimit(12);
     setOffset(offset - limit);
   };
 
   const goForward = () => {
     reset();
-    setLimit(10);
+    setLimit(12);
     setOffset(offset + limit);
   };
 
@@ -57,3 +57,4 @@ const RocketSearchContainer: React.FC = () => {
 };
 
 export default RocketSearchContainer;
+

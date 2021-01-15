@@ -1,15 +1,17 @@
 
 import { all, call, put, takeLatest } from 'redux-saga/effects';
 import { DocumentNode } from "graphql"
+import { Transaction } from './model';
 
 import gql from "graphql-tag";
 import { client } from "../../common/redux/gqlClient";
 import { action, createAsyncAction } from 'typesafe-actions';
 
-export class Transaction {
-    id?: number;
-    total?: number;
-}
+const fetchTransactionsAsync = createAsyncAction(
+    "FETCH_TRANSACTIONS",
+    "RECEIVE_TRANSACTIONS",
+    "FETCH_TRANSACTIONS_ERROR"
+)<any, any, any>();
 
 const addTransactionAsync = createAsyncAction(
     "ADD_TRANSACTION",
@@ -36,8 +38,31 @@ function* watchAddTransaction() {
     yield takeLatest("ADD_TRANSACTION", AddTransaction);
 }
 
+const fetchTransactionsQuery = gql`
+    query getTransactions{
+        getTransactions{
+            id
+            total
+        }
+    }
+`
+
+interface IFetchTransactionResult {
+    getTransactions: Transaction[]
+}
+
+function* fetchTransactions() {
+    const transactions: IFetchTransactionResult = yield call(fetcher, fetchTransactionsQuery);
+    yield put(fetchTransactionsAsync.success({ transactions: transactions.getTransactions }))
+}
+
+function* handleFetchTransactions() {
+    yield takeLatest("FETCH_TRANSACTIONS", fetchTransactions);
+}
+
 export default function* rootSaga() {
-    yield all([,
+    yield all([
         watchAddTransaction(),
+        handleFetchTransactions(),
     ]);
 }
