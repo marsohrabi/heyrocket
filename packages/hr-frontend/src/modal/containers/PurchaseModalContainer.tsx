@@ -13,9 +13,11 @@ export const PurchaseModalContainer = () => {
     const total = shoppingCart.reduce((a, b) => a + b.price!, 0);
     
     const handleOpen = () => {
-        dispatch(shoppingCartActions.addPurchase({amount: total}));
-        dispatch(shoppingCartActions.emptyCart());
-        dispatch(modalActions.openModal());
+        if (total > 0) {
+            dispatch(shoppingCartActions.addPurchase({amount: total}));
+            dispatch(shoppingCartActions.emptyCart());
+            dispatch(modalActions.openModal());
+        }
     }
 
     const handleClose = () => {
