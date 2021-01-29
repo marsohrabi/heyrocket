@@ -1,0 +1,24 @@
+type Rocket {
+    id: Int!
+    model: String
+    price: Int
+    description: String
+    image_url: String
+}
+
+type RocketConnection {
+    totalCount: Int!
+    rockets: [Rocket]
+}
+
+input PageParams {
+    limit: Int!
+    offset: Int!
+}
+
+type Query {
+    getRockets: [Rocket]
+    getRocketPages(params: PageParams): RocketConnection!
+    rocket(id: ID!): Rocket
+    findPage(pageNum: Int!): [Rocket]
+}
